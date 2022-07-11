@@ -49,4 +49,8 @@ Route::middleware([
     Route::post('/profile.update', [\App\Http\Controllers\ProfileController::class, 'update'])
         ->name('profile.update');
 
+    /** SCHOOLS **/
+    Route::get('/schools', [\App\Http\Controllers\SchoolController::class, 'index'])
+        ->name('schools');
+
 });

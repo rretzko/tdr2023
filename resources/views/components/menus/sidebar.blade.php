@@ -8,20 +8,40 @@
     </div>
 
     <div class="pl-3 text-lg">
+
+        {{-- DASHBOARD --}}
         <a href="{{ route('dashboard') }}"
            class="px-1 @if(explode('.',Route::currentRouteName())[0] === 'dashboard') text-yellow-200 font-bold @else text-white @endif hover:bg-gray-500"
         >
             Dashboard
         </a>
+
+        {{-- SCHOOLS --}}
+        <a href="{{ route('schools') }}"
+           class="px-1 @if(explode('.',Route::currentRouteName())[0] === 'schools') text-yellow-200 font-bold @else text-white @endif hover:bg-gray-500"
+        >
+            Schools
+        </a>
+
+        {{-- STUDENTS --}}
         <div class="px-1 text-gray-400 hover:bg-gray-500">Students</div>
+
+        {{-- ENSEMBLES --}}
         <div class="px-1 text-gray-400 hover:bg-gray-500">Ensembles</div>
+
+        {{-- LIBRARY --}}
         <a href="{{ route('library') }}"
            class="px-1 @if(explode('.',Route::currentRouteName())[0] === 'library') text-yellow-200 font-bold @else text-white @endif hover:bg-gray-500"
         >
             Library
         </a>
+
+        {{-- MEMBERSHIPS --}}
         <div class="px-1 text-gray-400 hover:bg-gray-500">Membership</div>
+
+        {{-- EVENTS --}}
         <div class="px-1 text-gray-400 hover:bg-gray-500">Events</div>
+
     </div>
 
 </div>

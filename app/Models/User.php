@@ -60,4 +60,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function schools()
+    {
+        return $this->belongsToMany(School::class)
+            ->orderBy('name');
+    }
 }
