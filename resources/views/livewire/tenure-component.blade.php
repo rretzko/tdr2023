@@ -4,7 +4,7 @@
 
     {{-- SCHOOL NAME --}}
     <div class="flex flex-col mb-2">
-        <label for="name">Tenure at: {{ $name }}</label>
+        <label for="name">Tenure at: <b>{{ $name }}</b></label>
     </div>
 
     {{-- PROPERTIES TABLE --}}
