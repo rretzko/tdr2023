@@ -52,5 +52,13 @@ Route::middleware([
     /** SCHOOLS **/
     Route::get('/schools', [\App\Http\Controllers\SchoolController::class, 'index'])
         ->name('schools');
+    Route::get('/schools/add', [\App\Http\Controllers\SchoolController::class, 'create'])
+        ->name('schools.create');
+    Route::get('/schools/edit/{tenure}', [\App\Http\Controllers\SchoolController::class, 'edit'])
+        ->name('schools.edit');
+    Route::post('/schools/save', [\App\Http\Controllers\SchoolController::class, 'store'])
+        ->name('schools.store');
+    Route::post('/schools/update/{school}', [\App\Http\Controllers\SchoolController::class, 'update'])
+        ->name('schools.update');
 
 });

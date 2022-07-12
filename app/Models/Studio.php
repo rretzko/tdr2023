@@ -14,10 +14,17 @@ class Studio extends Model
         $school = School::create(
             [
                 'name' => 'My Private Studio #'.auth()->id(),
+                'city' => 'Bernardsville',
                 'postal_code' => '07924',
             ]
         );
 
-        auth()->user()->schools()->attach($school);
+        Tenure::create(
+            [
+                'user_id' => auth()->id(),
+                'school_id' => $school->id,
+                'start' => date('Y'),
+            ],
+        );
     }
 }

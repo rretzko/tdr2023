@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\School;
-use App\Models\Studio;
 use App\Models\Tenure;
 use Illuminate\Http\Request;
 
-class SchoolController extends Controller
+class TenureController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +14,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //create a Studio school if none exists
-        if(! auth()->user()->tenures->count()){
-
-            Studio::create();
-        }
-
-        return view('schools.index',
-        [
-           'breadcrumbs' => $this->breadcrumbs,
-            'tenures' => auth()->user()->tenures,
-        ]);
+        //
     }
 
     /**
@@ -53,10 +41,10 @@ class SchoolController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\School  $school
+     * @param  \App\Models\Tenure  $tenure
      * @return \Illuminate\Http\Response
      */
-    public function show(School $school)
+    public function show(Tenure $tenure)
     {
         //
     }
@@ -64,26 +52,22 @@ class SchoolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Tenure $tenure
+     * @param  \App\Models\Tenure  $tenure
      * @return \Illuminate\Http\Response
      */
     public function edit(Tenure $tenure)
     {
-        return view('schools.edit',
-            [
-                'breadcrumbs' => $this->breadcrumbs,
-                'tenure' => $tenure,
-            ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\School  $school
+     * @param  \App\Models\Tenure  $tenure
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(Request $request, Tenure $tenure)
     {
         //
     }
@@ -91,10 +75,10 @@ class SchoolController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\School  $school
+     * @param  \App\Models\Tenure  $tenure
      * @return \Illuminate\Http\Response
      */
-    public function destroy(School $school)
+    public function destroy(Tenure $tenure)
     {
         //
     }

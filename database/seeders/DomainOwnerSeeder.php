@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Library\ArrangementType;
+use App\Models\Tenure;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -32,5 +33,6 @@ class DomainOwnerSeeder extends Seeder
         $role->givePermissionTo($permission);
 
         $user->assignRole('library_owner');
+
     }
 }

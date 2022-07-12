@@ -66,4 +66,9 @@ class User extends Authenticatable
         return $this->belongsToMany(School::class)
             ->orderBy('name');
     }
+
+    public function tenures()
+    {
+        return $this->hasMany(Tenure::class);
+    }
 }
