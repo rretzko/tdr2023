@@ -16,9 +16,9 @@ class TenureComponent extends Component
     public function mount()
     {
         $this->end = $this->tenure->end;
-        $this->name = $this->tenure['school']->name;
-        $this->start = $this->tenure->start;
-        $this->tenureyears = $this->tenure->tenure;
+        $this->name = ($this->tenure['school']) ? $this->tenure['school']->name : 'New School';
+        $this->start = $this->tenure->start ?: date('Y');
+        $this->tenureyears = ($this->tenure->start) ? $this->tenure->tenure : 0;
     }
 
     public function render()

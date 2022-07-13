@@ -5,12 +5,15 @@
     {{-- SCHOOL NAME --}}
     <div class="flex flex-col mb-2">
         <label for="name">School Name</label>
-        <input wire:model="name"
+        <input wire:model.debounce.500ms="name"
                class="w-60 mb-1 bg-green-50 {{ $errors->first('name') ?  'bg-red-50' : '' }}"
                type="text" value="{{ $name ? $name : (old($name)) }}"
                required
                onkeydown="closeUpdated()"
         />
+        <div>
+            {!! $searchresults !!}
+        </div>
     </div>
     <div>
         @error('name')

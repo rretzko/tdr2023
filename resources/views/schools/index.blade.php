@@ -50,8 +50,10 @@
                     Grades
                 </th>
                 <th>
-                    <a href="" class="text-center">
-                        <button class="px-1 mt-1 bg-green-200 text-green-800 text-sm border border-green-800 shadow-lg rounded-lg">Add</button>
+                    <a href="{{ route('schools.create') }}" class="text-center">
+                        <button class="px-1 mt-1 bg-green-200 text-green-800 text-sm border border-green-800 shadow-lg rounded-lg">
+                            Add
+                        </button>
                     </a>
                 </th>
             </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\County;
 use App\Models\Geostate;
+use App\Models\School;
 use Livewire\Component;
 
 class SchoolComponent extends Component
@@ -17,18 +18,21 @@ class SchoolComponent extends Component
     public $name = '';
     public $postalcode = '';
     public $school = null;
+    public $searchresults = '';
     public $updatedmssg = '';
-
 
     public function mount()
     {
-        $this->address1 = $this->school->address1;
-        $this->address2 = $this->school->address2;
-        $this->city = $this->school->city;
-        $this->countyid = $this->school->county_id;
-        $this->geostateid = $this->school->geostate_id;
-        $this->name = $this->school->name;
-        $this->postalcode = $this->school->postal_code;
+        if($this->school) {
+
+            $this->address1 = $this->school->address1;
+            $this->address2 = $this->school->address2;
+            $this->city = $this->school->city;
+            $this->countyid = $this->school->county_id;
+            $this->geostateid = $this->school->geostate_id;
+            $this->name = $this->school->name;
+            $this->postalcode = $this->school->postal_code;
+        }
 
         $this->counties = County::orderBy('name')->get();
         $this->geostates = Geostate::orderBy('name')->get();
@@ -56,6 +60,30 @@ class SchoolComponent extends Component
         $this->updatedmssg = ($this->school->wasChanged())
             ? $this->name . ' has been updated.'
             : 'No changes made to '.$this->name;
+    }
+
+    /**
+     * Used when adding a new school to search for an existing value
+     * @return string|void
+     */
+    public function updatedName()
+    {
+        //early exits
+        if($this->school){ $this->reset('searchresults'); return ''; }
+        if(! strlen($this->name)){ $this->reset('searchresults'); return ''; }
+
+
+        $schools = School::where('name', 'LIKE', '%'.$this->name.'%')
+            ->select('id','name','city','postal_code')
+            ->get();
+
+        $this->searchresults = '<ul>';
+        foreach($schools AS $school){
+
+            $this->searchresults .= '<li>'.$school->shortName.'</li>';
+        }
+
+        $this->searchresults .= '</ul>';
     }
 
     public function updating()

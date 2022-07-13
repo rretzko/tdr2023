@@ -36,7 +36,11 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        //
+        return view('schools.create',
+            [
+                'breadcrumbs' => $this->breadcrumbs,
+                'tenure' => new Tenure,
+            ]);
     }
 
     /**

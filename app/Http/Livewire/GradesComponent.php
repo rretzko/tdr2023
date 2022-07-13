@@ -18,7 +18,7 @@ class GradesComponent extends Component
     public function mount()
     {
         $this->grades = Grade::all();
-        $this->name = $this->school->name;
+        $this->name = ($this->school) ? $this->school->name : 'New School';
         $this->checkeds = auth()->user()->schoolGradeIdsTaught($this->school);
     }
 
