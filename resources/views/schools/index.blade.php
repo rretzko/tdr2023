@@ -74,7 +74,7 @@
                     <td class="w-1/12 text-center">{{ $tenure->start }}</td>
                     <td class="w-1/12 text-center">{{ $tenure->end }}</td>
                     <td class="w-1/12 text-center">{{ $tenure->tenure }}</td>
-                    <td class="w-1/12 text-center">{{ $tenure['school']->grades }}</td>
+                    <td class="w-1/12 text-center">{{ $tenure->gradesTaughtString }}</td>
                     <td class="w-1/12 text-center">
                         <a href="{{ route('schools.edit', ['tenure' => $tenure]) }}">
                             <button class="px-1 mt-1 bg-indigo-200 text-indigo-800 text-sm border border-indigo-800 shadow-lg rounded-lg">

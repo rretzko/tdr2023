@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CountySeeder::class);
         $this->call(GeostateSeeder::class);
         $this->call(SchoolSeeder::class);
+        $this->call(GradeSeeder::class);
+
     }
 }

@@ -2,18 +2,24 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Grade;
+use App\Models\GradesTaught;
+use App\Services\SyncCheckedGradeIdsService;
 use Livewire\Component;
 
 class GradesComponent extends Component
 {
+    public $checkeds = [];
     public $grades = [];
     public $name = '';
     public $school;
+    public $updatedmssg = '';
 
     public function mount()
     {
-        $this->grades = [1,2,3,4,5,6,7,8,9,10,11,12,'collegiate','adult'];
+        $this->grades = Grade::all();
         $this->name = $this->school->name;
+        $this->checkeds = auth()->user()->schoolGradeIdsTaught($this->school);
     }
 
     public function render()
@@ -21,5 +27,11 @@ class GradesComponent extends Component
         return view('livewire.grades-component');
     }
 
+    public function updatedCheckeds()
+    {
+        $updated = new SyncCheckedGradeIdsService($this->checkeds, $this->school);
+
+        $this->updatedmssg = 'Grades updated. ('.implode(',', $this->checkeds).')';
+    }
 
 }

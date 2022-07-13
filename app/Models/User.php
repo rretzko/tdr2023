@@ -61,6 +61,14 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function schoolGradeIdsTaught(School $school): array
+    {
+        return GradesTaught::where('user_id', $this->id)
+        ->where('school_id', $school->id)
+        ->pluck('grade_id')
+        ->toArray();
+    }
+
     public function schools()
     {
         return $this->belongsToMany(School::class)

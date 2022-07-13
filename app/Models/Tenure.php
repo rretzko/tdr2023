@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Tenure extends Model
 {
@@ -17,6 +18,21 @@ class Tenure extends Model
     public function getCurrentSchoolAttribute(): bool
     {
         return (bool)$this->end;
+    }
+
+    public function getGradesTaughtStringAttribute(): string
+    {
+        $grades = DB::table('grades_taughts')
+            ->join('grades','grades_taughts.grade_id','=','grades.id')
+            ->where('grades_taughts.user_id','=',$this->user_id)
+            ->where('grades_taughts.school_id', '=',$this->school->id)
+            ->whereNull('grades_taughts.deleted_at')
+            ->select('grades.descr')
+            ->orderBy('grades.id')
+            ->pluck('grades.descr')
+            ->toArray();
+
+        return implode(',', $grades);
     }
 
     public function getTenureAttribute(): int
