@@ -6,7 +6,9 @@
 
     <x-pages.page-header header="Dashboard"/>
 
-    <container class="">
+    <container class="space-y-2">
+
+        <x-dashboard.sections.schools />
 
         <x-dashboard.sections.library />
 
