@@ -56,6 +56,10 @@ Route::middleware([
         ->name('schools.create');
     Route::get('/schools/edit/{tenure}', [\App\Http\Controllers\SchoolController::class, 'edit'])
         ->name('schools.edit');
+    Route::get('/schools/export', [\App\Http\Controllers\SchoolController::class, 'export'])
+        ->name('schools.export');
+    Route::get('/schools/remove/{tenure}', [\App\Http\Controllers\SchoolController::class, 'destroy'])
+        ->name('schools.destroy');
     Route::post('/schools/save', [\App\Http\Controllers\SchoolController::class, 'store'])
         ->name('schools.store');
     Route::post('/schools/update/{school}', [\App\Http\Controllers\SchoolController::class, 'update'])

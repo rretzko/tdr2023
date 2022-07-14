@@ -32,7 +32,7 @@ class Tenure extends Model
             ->pluck('grades.descr')
             ->toArray();
 
-        return implode(',', $grades);
+        return (empty($grades)) ? 'Missing!' : implode(',', $grades);
     }
 
     public function getTenureAttribute(): int

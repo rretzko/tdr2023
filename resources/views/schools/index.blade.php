@@ -22,7 +22,7 @@
 
             <header class="font-bold">{{ $tenures->count() }} @if($tenures->count() > 1) schools @else school @endif found.</header>
 
-            <a href="" class="text-blue-600">
+            <a href="{{ route('schools.export') }}" class="text-blue-600">
                 Export
             </a>
 
@@ -49,6 +49,7 @@
                 <th>
                     Grades
                 </th>
+                <th class=""></th>
                 <th>
                     <a href="{{ route('schools.create') }}" class="text-center">
                         <button class="px-1 mt-1 bg-green-200 text-green-800 text-sm border border-green-800 shadow-lg rounded-lg">
@@ -59,16 +60,10 @@
             </tr>
             </thead>
             <tbody>
-            @forelse($tenures AS $tenure)
+            @forelse($tenures->sortBy([['start','desc'],['school.name','asc']]) AS $tenure)
                 <tr>
                     <td
-                        class="sm:hidden"
-                        title="{{ $tenure['school']->name }}"
-                    >
-                        {{ $tenure['school']->abbr }}
-                    </td>
-                    <td
-                        class="hidden sm:block "
+                        class=""
                         title="{{ $tenure['school']->name }}"
                     >
                         {{ $tenure['school']->shortName }}
@@ -76,7 +71,9 @@
                     <td class="w-1/12 text-center">{{ $tenure->start }}</td>
                     <td class="w-1/12 text-center">{{ $tenure->end }}</td>
                     <td class="w-1/12 text-center">{{ $tenure->tenure }}</td>
-                    <td class="w-1/12 text-center">{{ $tenure->gradesTaughtString }}</td>
+                    <td class="w-1/12 text-center @if($tenure->gradesTaughtString === 'Missing!') bg-red-100 text-red-800 @endif">
+                        {{ $tenure->gradesTaughtString }}
+                    </td>
                     <td class="w-1/12 text-center">
                         <a href="{{ route('schools.edit', ['tenure' => $tenure]) }}">
                             <button class="px-1 mt-1 bg-indigo-200 text-indigo-800 text-sm border border-indigo-800 shadow-lg rounded-lg">
@@ -84,10 +81,15 @@
                             </button>
                         </a>
                     </td>
+                    <td>
+                        <a href="{{ route('schools.destroy', $tenure) }}" class="px-1 mt-1 bg-red-50 text-red-800 text-xs border border-red-800 shadow-lg rounded-lg">
+                            Remove
+                        </a>
+                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="2">No schools found</td>
+                    <td colspan="7">No schools found</td>
                 </tr>
             @endforelse
             </tbody>

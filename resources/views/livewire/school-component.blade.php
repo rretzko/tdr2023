@@ -1,6 +1,22 @@
 <form wire:submit.prevent="register()"
     class="bg-white p-4 border border-black rounded-lg"
 >
+    {{-- POSTAL CODE (used for easy search on a new school) --}}
+    <div class="flex flex-col mb-2">
+
+        @if(! $school)
+
+            <label for="postalcode">Zip Code</label>
+            <input wire:model="postalcode"
+                   class="w-36 mb-1 bg-green-50 {{ $errors->first('postalcode') ?  'bg-red-50' : '' }}"
+                   type="text"
+                   value="{{ $postalcode }}"
+                   required
+                   onkeydown="closeUpdated()"
+            />
+
+        @endif
+    </div>
 
     {{-- SCHOOL NAME --}}
     <div class="flex flex-col mb-2">
@@ -89,28 +105,33 @@
     </div>
 
     {{-- POSTAL CODE --}}
-    <div class="flex flex-col mb-2">
-        <label for="postalcode">Zip Code</label>
-        <input wire:model="postalcode"
-               class="w-36 mb-1 bg-green-50 {{ $errors->first('postalcode') ?  'bg-red-50' : '' }}"
-               type="text"
-               value="{{ $city }}"
-               required
-               onkeydown="closeUpdated()"
-        />
-    </div>
-    <div>
-        @error('postalcode')
-        <div class="bg-red-100 text-red-800 border-red-800 rounded-lg font-bold mb-2 px-2">
-            {{ $message }}
+    @if($school)
+        <div class="flex flex-col mb-2">
+
+            <label for="postalcode">Zip Code</label>
+            <input wire:model="postalcode"
+                   class="w-36 mb-1 bg-green-50 {{ $errors->first('postalcode') ?  'bg-red-50' : '' }}"
+                   type="text"
+                   value="{{ $postalcode }}"
+                   required
+                   onkeydown="closeUpdated()"
+            />
         </div>
-        @enderror
-    </div>
+        <div>
+            @error('postalcode')
+            <div class="bg-red-100 text-red-800 border-red-800 rounded-lg font-bold mb-2 px-2">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
+    @endif
 
     {{-- SUBMIT --}}
     <div class="flex flex-row">
         <label for=""></label>
-        <input class="w-36 border border-indigo-800 text-white bg-indigo-200 rounded-lg" type="submit" value="Update" />
+        <input class="w-36 border border-indigo-800 text-white bg-indigo-200 rounded-lg" type="submit"
+               value=" @if($school) Update @else Add @endif" />
+
         @if(strlen($updatedmssg))
             <div id="updatedMssg"
                  class="ml-2 mb-2 mt-1 px-2 bg-indigo-100 text-indigo-800 border-indigo-800 rounded-lg font-bold"

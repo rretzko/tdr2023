@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SchoolsExport;
 use App\Models\School;
 use App\Models\Studio;
 use App\Models\Tenure;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SchoolController extends Controller
 {
@@ -44,28 +46,6 @@ class SchoolController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\School  $school
-     * @return \Illuminate\Http\Response
-     */
-    public function show(School $school)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param Tenure $tenure
@@ -81,25 +61,23 @@ class SchoolController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Remove the specified resource from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\School  $school
+     * @param Tenure $tenure
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function destroy(Tenure $tenure)
     {
-        //
+        $tenure->delete();
+
+        return redirect()->back();
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\School  $school
-     * @return \Illuminate\Http\Response
+     * Download xls file of schools table
      */
-    public function destroy(School $school)
+    public function export()
     {
-        //
+        return Excel::download(new SchoolsExport,'schools.xlsx');
     }
 }
