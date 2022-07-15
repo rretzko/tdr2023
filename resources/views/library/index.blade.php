@@ -42,8 +42,10 @@
                 <th>###</th>
                 <th class="flex flex-row">
                     <div class="w-11/12 text-center my-1">Description</div>
-                    <a href="" class="ml-8">
-                        <button class="px-1 mt-1 bg-green-200 text-green-800 text-sm border border-green-800 shadow-lg rounded-lg">Add</button>
+                    <a href="{{ route('library.composition') }}" class="ml-8">
+                        <button class="px-1 mt-1 bg-green-200 text-green-800 text-sm border border-green-800 shadow-lg rounded-lg">
+                            Add
+                        </button>
                     </a>
                 </th>
             </tr>

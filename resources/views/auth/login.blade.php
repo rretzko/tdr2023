@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-tdr.authentication-card>
+    <x-tdr.authentication-card class="">
         <x-slot name="logo">
             <div id="logo" class="mb-6">
                 <img
@@ -18,7 +18,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" class="">
             @csrf
 
             <div>

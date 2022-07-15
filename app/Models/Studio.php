@@ -13,7 +13,7 @@ class Studio extends Model
     {
         $school = School::create(
             [
-                'name' => 'My Private Studio #'.auth()->id(),
+                'name' => 'My Home Studio #'.auth()->id(),
                 'city' => 'Bernardsville',
                 'postal_code' => '07924',
             ]

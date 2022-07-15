@@ -25,8 +25,8 @@ class CompositionRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        if(is_numeric($this->tagid) &&
-            (bool)ArrangementType::find($this->tagid) &&
+        if(is_numeric($this->arrangement_type_id) &&
+            (bool)ArrangementType::find($this->arrangement_type_id) &&
             strlen($this->new_arrangement_type)) {
 
             $this->merge(['arrangement_type' => $this->new_arrangement_type]);
@@ -35,9 +35,9 @@ class CompositionRequest extends FormRequest
 
             $this->merge(['arrangement_type' => $this->new_arrangement_type]);
 
-        }elseif(is_numeric($this->tagid) && (bool)ArrangementType::find($this->tagid)){
+        }elseif(is_numeric($this->arrangement_type_id) && (bool)ArrangementType::find($this->arrangement_type_id)){
 
-            $this->merge(['arrangement_type' => $this->tagid]);
+            $this->merge(['arrangement_type' => $this->arrangement_type_id]);
 
         }else{
 

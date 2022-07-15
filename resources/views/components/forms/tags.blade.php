@@ -1,13 +1,15 @@
 @props([
 'label' => false,
 'nameid' => $nameid,
+'tagid' => 'tagid',
 'tags' => [],
-
+'required' => false,
+'can_add' => false,
 ])
 {{-- TAG OPTION REPLACED BY <SELECT> ON SMALLEST VIEWPORTS--}}
-<div class="invisible hidden sm:visible sm:block flex flex-col mb-2">
+<div class="invisible hidden sm:visible sm:flex flex-row flex-wrap mx-2 mb-2">
 
-    <input type="hidden" name="tagid" id="tagid" value="0" />
+    <input type="hidden" name="{{ $tagid }}" id="{{ $tagid }}" value="0" />
 
     <label for="{{ str_replace(' ','',$nameid) }}" class="font-bold">
         {{ ucwords($label) }}
@@ -25,7 +27,7 @@
                 tabindex="0"
                 value="{{ $tag->id }}"
             >
-                {{ $tag->descr }}
+                {{ ($tag->descr) ?: $tag->name }}
             </span>
         @empty
             <button>No tags found</button>
@@ -33,10 +35,12 @@
 
     </div>
     <div>
-        <x-forms.input label="" nameid="new_arrangement_type" placeholder="Add new type..." />
+        @if($can_add)
+            <x-forms.input label="" nameid="new_arrangement_type" placeholder="Add new type..." />
+        @endif
     </div>
     <div>
-        @error('arrangement_type')
+        @error($tagid)
         <div class="bg-red-100 text-red-800 border-red-800 rounded-lg font-bold mb-2 px-2">
             {{ $message }}
         </div>
@@ -76,17 +80,21 @@
         {{ ucwords($label) }}
     </label>
 
-    <select name="tagid" class="mb-2">
-        <option value="0">Select type</option>
+    <select name="tagid" class="mb-2 @if($required) bg-green-50 text-green-800 @endif"
+            @if($required) required @endif
+    >
+        <option value="0">Select</option>
         @forelse($tags AS $tag)
-            <option value="{{ $tag->id }}">{{ $tag->descr }}</option>
+            <option value="{{ $tag->id }}">{{ ($tag->descr) ?: $tag->name }}</option>
         @empty
             <option value="0">No options found</option>
         @endif
     </select>
 
     <div>
-        <x-forms.input label="" nameid="new_arrangement_type" placeholder=" Or add new type..." />
+        @if($can_add)
+            <x-forms.input label="" nameid="new_arrangement_type" placeholder=" Or add new type..." />
+        @endif
     </div>
     <div>
         @error('arrangement_type')

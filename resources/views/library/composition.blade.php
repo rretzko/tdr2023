@@ -6,9 +6,17 @@
 
     <x-pages.page-header header="Add a new Composition"/>
 
-    <container class="">
+    <container class="{{ route('library.medley') }}">
 
-        <x-forms.composition.store :arrangementtypes="$arrangementtypes" />
+        <div class="mb-3">
+            <a href="" class="text-sm text-blue-600 bg-white border border-blue-800 rounded-lg shadow-lg px-2">
+                Click here if the new composition is a medley
+            </a>
+        </div>
+
+        @livewire('library.composition-component')
+
+        <x-forms.composition.store :arrangementtypes="$arrangementtypes" :openlibraries="$openlibraries"/>
 
     </container>
 

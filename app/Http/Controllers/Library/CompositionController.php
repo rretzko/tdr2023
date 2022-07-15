@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Library\CompositionRequest;
 use App\Models\Library\ArrangementType;
 use App\Models\Library\Composition;
+use App\Models\Library\Library;
 use App\Services\BreadcrumbsService;
+use App\Services\Library\OpenLibrariesService;
 use Illuminate\Http\Request;
 
 class CompositionController extends Controller
@@ -28,10 +30,14 @@ class CompositionController extends Controller
      */
     public function create()
     {
+        //libraries in schools of which auth()->user() currently teaches
+        $openlibraries = new OpenLibrariesService();
+
         return view('library.composition',
             [
                 'breadcrumbs' => $this->breadcrumbs,
                 'arrangementtypes' => ArrangementType::orderBy('descr')->get(),
+                'openlibraries' => $openlibraries->libraries(),
             ]
         );
     }

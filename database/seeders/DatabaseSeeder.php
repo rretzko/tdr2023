@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GeostateSeeder::class);
         $this->call(SchoolSeeder::class);
         $this->call(GradeSeeder::class);
-
+        $this->call(CopytypeSeeder::class);
     }
 }

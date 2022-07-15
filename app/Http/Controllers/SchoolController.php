@@ -6,6 +6,7 @@ use App\Exports\SchoolsExport;
 use App\Models\School;
 use App\Models\Studio;
 use App\Models\Tenure;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -18,11 +19,13 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //create a Studio school if none exists
+       //create a Studio school if none exists
         if(! auth()->user()->tenures->count()){
 
             Studio::create();
         }
+
+        auth()->user()->refresh();
 
         return view('schools.index',
         [
