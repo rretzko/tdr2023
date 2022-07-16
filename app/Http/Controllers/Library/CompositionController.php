@@ -26,18 +26,20 @@ class CompositionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Library $library
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Library $library)
     {
         //libraries in schools of which auth()->user() currently teaches
-        $openlibraries = new OpenLibrariesService();
+        $service = new OpenLibrariesService();
 
         return view('library.composition',
             [
-                'breadcrumbs' => $this->breadcrumbs,
                 'arrangementtypes' => ArrangementType::orderBy('descr')->get(),
-                'openlibraries' => $openlibraries->libraries(),
+                'breadcrumbs' => $this->breadcrumbs,
+                'library' => $library,
+                'openlibraries' => $service->libraries(),
             ]
         );
     }
@@ -92,7 +94,7 @@ class CompositionController extends Controller
      */
     public function edit(Composition $composition)
     {
-        //
+        dd($composition);
     }
 
     /**

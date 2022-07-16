@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Library;
 use App\Http\Controllers\Controller;
 use App\Models\Library\Composition;
 use App\Models\Library\Library;
+use App\Services\Library\OpenLibrariesService;
 use Illuminate\Http\Request;
 
 class LibraryController extends Controller
@@ -16,10 +17,16 @@ class LibraryController extends Controller
      */
     public function index()
     {
+        /** @todo build user configuration for default(s) library */
+        $defaultlibrary = null;
+        $service = new OpenLibrariesService();
+
         return view('library.index',
         [
             'breadcrumbs' => $this->breadcrumbs,
             'compositions' => Composition::all(),
+            'libraries' => $service->libraries(),
+            'library' => $defaultlibrary,
         ]);
     }
 
@@ -52,7 +59,15 @@ class LibraryController extends Controller
      */
     public function show(Library $library)
     {
-        //
+        $service = new OpenLibrariesService();
+
+        return view('library.index',
+            [
+                'breadcrumbs' => $this->breadcrumbs,
+                'compositions' => $library->compositions,
+                'libraries' => $service->libraries(),
+                'library' => $library,
+            ]);
     }
 
     /**

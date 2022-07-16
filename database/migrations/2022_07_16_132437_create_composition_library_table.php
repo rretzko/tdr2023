@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('compositions', function (Blueprint $table) {
+        Schema::create('composition_library', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('subtitle')->nullable();
-            $table->foreignId('arrangement_type_id')->constrained();
-            $table->foreignId('medley_id')->nullable()->constrained();
+            $table->foreignId('composition_id')->constrained();
+            $table->foreignId('library_id')->constrained();
             $table->timestamps();
-            $table->softDeletes();
-            $table->index('title');
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compositions');
+        Schema::dropIfExists('composition_library');
     }
 };

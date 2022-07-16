@@ -1,5 +1,6 @@
 @props([
     'arrangementtypes' => $arrangementtypes,
+
     'openlibraries' => $openlibraries,
 ])
 <form method="post" action="{{ route('library.composition.store') }}" class="bg-white border border-gray-600 p-2 rounded-lg">

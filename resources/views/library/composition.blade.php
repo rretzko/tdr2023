@@ -14,9 +14,7 @@
             </a>
         </div>
 
-        @livewire('library.composition-component')
-
-        <x-forms.composition.store :arrangementtypes="$arrangementtypes" :openlibraries="$openlibraries"/>
+        @livewire('library.composition-component', ['library' => $library])
 
     </container>
 

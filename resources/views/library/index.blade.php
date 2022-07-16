@@ -6,7 +6,7 @@
 
     <x-pages.page-header header="Libraries"/>
 
-    <x-menus.libraries.library-buttons />
+    <x-menus.libraries.library-buttons :libraries="$libraries" :library="$library"/>
 
     <div id="search" class="my-2">
         <input type="text"
@@ -25,7 +25,7 @@
 
         <div class="flex flex-row justify-between pr-4">
 
-            <header class="font-bold">{{ $compositions->count() }} compositions found.</header>
+            <header class="font-bold">{{ $compositions ? $compositions->count() : 0 }} compositions found.</header>
 
             <a href="" class="text-blue-600">
                 Export
@@ -42,11 +42,13 @@
                 <th>###</th>
                 <th class="flex flex-row">
                     <div class="w-11/12 text-center my-1">Description</div>
-                    <a href="{{ route('library.composition') }}" class="ml-8">
-                        <button class="px-1 mt-1 bg-green-200 text-green-800 text-sm border border-green-800 shadow-lg rounded-lg">
-                            Add
-                        </button>
-                    </a>
+                    @if($library)
+                        <a href="{{ route('library.composition', ['library' => $library]) }}" class="ml-8 ">
+                            <button class="px-1 mt-1 bg-green-200 text-green-800 text-sm border border-green-800 shadow-lg rounded-lg">
+                                Add
+                            </button>
+                        </a>
+                    @endif
                 </th>
             </tr>
             </thead>
@@ -58,7 +60,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="2">No compositions found</td>
+                    <td colspan="2" class="text-center">No compositions found</td>
                 </tr>
             @endforelse
             </tbody>
