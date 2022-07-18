@@ -40,10 +40,17 @@
             <thead>
             <tr>
                 <th>###</th>
-                <th class="flex flex-row">
-                    <div class="w-11/12 text-center my-1">Description</div>
-                    @if($library)
-                        <a href="{{ route('library.composition', ['library' => $library]) }}" class="ml-8 ">
+                <th class="">
+                    <div class="w-10/12 text-center my-1">Description</div>
+                </th>
+                <th>
+                @if(! is_null($library))
+                    <span class="sr-only">Edit</span>
+                @endif
+                </th>
+                <th>
+                    @if(! is_null($library))
+                        <a href="{{ route('library.composition', ['library' => $library]) }}" class="">
                             <button class="px-1 mt-1 bg-green-200 text-green-800 text-sm border border-green-800 shadow-lg rounded-lg">
                                 Add
                             </button>
@@ -57,10 +64,24 @@
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="w-11/12">{!! $composition->summaryHtml !!}</td>
+                    <td>
+                        @if(! is_null($library))
+                            <a href="{{ route('library.composition.edit', ['library' => $library,'composition' => $composition]) }}">
+                                <x-forms.buttons.edit/>
+                            </a>
+                        @endif
+                    </td>
+                    <td>
+                        @if(! is_null($library))
+                            <a href="">
+                                <x-forms.buttons.remove/>
+                            </a>
+                        @endif
+                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="2" class="text-center">No compositions found</td>
+                    <td colspan="4" class="text-center">No compositions found</td>
                 </tr>
             @endforelse
             </tbody>

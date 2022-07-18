@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Library\Copytype;
+use App\Models\Library\CopyType;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CopytypeSeeder extends Seeder
+class CopyTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -23,7 +23,7 @@ class CopytypeSeeder extends Seeder
 
         foreach($seeds AS $seed){
 
-            Copytype::create(
+            CopyType::create(
                 [
                     'descr' => $seed[0],
                     'help' => $seed[1],

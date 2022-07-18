@@ -92,8 +92,20 @@ class CompositionController extends Controller
      * @param  \App\Models\Library\Composition  $composition
      * @return \Illuminate\Http\Response
      */
-    public function edit(Composition $composition)
+    public function edit(Library $library, Composition $composition)
     {
+        //libraries in schools of which auth()->user() currently teaches
+        $service = new OpenLibrariesService();
+
+        return view('library.compositions.edit',
+            [
+                'arrangementtypes' => ArrangementType::orderBy('descr')->get(),
+                'breadcrumbs' => $this->breadcrumbs,
+                'composition' => $composition,
+                'library' => $library,
+                'openlibraries' => $service->libraries(),
+            ]
+        );
         dd($composition);
     }
 

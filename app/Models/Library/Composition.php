@@ -11,6 +11,12 @@ class Composition extends Model
 
     protected $fillable = ['arrangement_type_id','medley_id', 'subtitle','title'];
 
+    public function artists()
+    {
+        return $this->belongsToMany(Artist::class)
+            ->withPivot('artist_type_id');
+    }
+
     public function getSummaryHtmlAttribute(): string
     {
         $str = '<div>';

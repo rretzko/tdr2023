@@ -30,7 +30,7 @@
         <div class="px-1 text-gray-400 hover:bg-gray-500">Ensembles</div>
 
         {{-- LIBRARIES --}}
-        <a href="{{ route('library') }}"
+        <a href="{{ route('library.index') }}"
            class="px-1 @if(explode('.',Route::currentRouteName())[0] === 'library') text-yellow-200 font-bold @else text-white @endif hover:bg-gray-500"
         >
             Libraries

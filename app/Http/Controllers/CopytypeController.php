@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Library\Copytype;
+use App\Models\Library\CopyType;
 use Illuminate\Http\Request;
 
 class CopytypeController extends Controller
@@ -41,10 +41,10 @@ class CopytypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Library\Copytype  $copytype
+     * @param  \App\Models\Library\CopyType  $copytype
      * @return \Illuminate\Http\Response
      */
-    public function show(Copytype $copytype)
+    public function show(CopyType $copytype)
     {
         //
     }
@@ -52,10 +52,10 @@ class CopytypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Library\Copytype  $copytype
+     * @param  \App\Models\Library\CopyType  $copytype
      * @return \Illuminate\Http\Response
      */
-    public function edit(Copytype $copytype)
+    public function edit(CopyType $copytype)
     {
         //
     }
@@ -64,10 +64,10 @@ class CopytypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Library\Copytype  $copytype
+     * @param  \App\Models\Library\CopyType  $copytype
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Copytype $copytype)
+    public function update(Request $request, CopyType $copytype)
     {
         //
     }
@@ -75,10 +75,10 @@ class CopytypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Library\Copytype  $copytype
+     * @param  \App\Models\Library\CopyType  $copytype
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Copytype $copytype)
+    public function destroy(CopyType $copytype)
     {
         //
     }

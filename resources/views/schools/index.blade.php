@@ -76,14 +76,12 @@
                     </td>
                     <td class="w-1/12 text-center">
                         <a href="{{ route('schools.edit', ['tenure' => $tenure]) }}">
-                            <button class="px-1 mt-1 bg-indigo-200 text-indigo-800 text-sm border border-indigo-800 shadow-lg rounded-lg">
-                                Edit
-                            </button>
+                            <x-forms.buttons.edit />
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('schools.destroy', $tenure) }}" class="px-1 mt-1 bg-red-50 text-red-800 text-xs border border-red-800 shadow-lg rounded-lg">
-                            Remove
+                        <a href="{{ route('schools.destroy', $tenure) }}" >
+                            <x-forms.buttons.remove />
                         </a>
                     </td>
                 </tr>

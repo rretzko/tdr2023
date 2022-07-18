@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Library;
 
 use App\Models\Library\ArrangementType;
 use App\Models\Library\Composition;
-use App\Models\Library\Copytype;
+use App\Models\Library\CopyType;
 use App\Models\Library\Library;
 use App\Services\Library\OpenLibrariesService;
 use Livewire\Component;
@@ -13,6 +13,7 @@ class CompositionComponent extends Component
 {
     public $arrangementtypeid=1;
     public $arrangementtypes=null;
+    public $composition=null;
     public $copytypeid=1;
     public $copytypes=null;
     public $library=null;
@@ -27,10 +28,17 @@ class CompositionComponent extends Component
     public function mount()
     {
         $this->arrangementtypes = Arrangementtype::orderBy('descr')->get();
-        $this->copytypes = Copytype::all();
+        $this->copytypes = CopyType::all();
         $service = new OpenLibrariesService();
         $this->libraries = $service->libraries();
         $this->libraryid = $this->library->id;
+
+        if($this->composition){
+            $this->arrangementtypeid = $this->composition->arrangement_type_id;
+            $this->copytypeid = $this->composition->copy_type_id;
+            $this->subtitle = $this->composition->subtitle;
+            $this->title = $this->composition->title;
+        }
     }
 
     public function render()
@@ -67,7 +75,7 @@ class CompositionComponent extends Component
 
             foreach(Composition::where('title', 'LIKE', '%'.$this->title.'%')->orderBy('title')->get() AS $composition){
 
-                $this->searchtitles .= '<a href="/library/composition/edit/'.$composition->id.'" class="text-blue-600">'
+                $this->searchtitles .= '<a href="/library/composition/edit/'.$this->library->id.'/'.$composition->id.'" class="text-blue-600">'
                     .$composition->title
                     .'</a>';
             }

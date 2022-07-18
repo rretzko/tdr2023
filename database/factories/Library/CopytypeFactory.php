@@ -5,7 +5,7 @@ namespace Database\Factories\Library;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Library\Copytype>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Library\CopyType>
  */
 class CopytypeFactory extends Factory
 {

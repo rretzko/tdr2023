@@ -87,7 +87,17 @@
             </div>
         </div>
 
-        <x-forms.buttons.add/>
+        @if($composition)
+            <x-forms.buttons.update />
+        @else
+            <x-forms.buttons.add/>
+        @endif
 
     </form>
+
+    <div>
+        @if($composition)
+            <x-forms.compositions.artists.index />
+        @endif
+    </div>
 </div>

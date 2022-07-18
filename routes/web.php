@@ -29,13 +29,13 @@ Route::middleware([
 
     /** LIBRARY COMPOSITION AND COLLECTION **/
     Route::get('/library', [\App\Http\Controllers\Library\LibraryController::class, 'index'])
-        ->name('library');
+        ->name('library.index');
     Route::get('/library/{library}',[\App\Http\Controllers\Library\LibraryController::class, 'show'])
         ->name('library.show');
 
     Route::get('/library/composition/{library}', [\App\Http\Controllers\Library\CompositionController::class, 'create'])
         ->name('library.composition');
-    Route::get('/library/composition/edit/{composition}', [\App\Http\Controllers\Library\CompositionController::class, 'edit'])
+    Route::get('/library/composition/edit/{library}/{composition}', [\App\Http\Controllers\Library\CompositionController::class, 'edit'])
         ->name('library.composition.edit');
 
     Route::get('/library/medley', function() {

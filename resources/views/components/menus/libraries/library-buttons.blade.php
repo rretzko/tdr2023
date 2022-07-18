@@ -2,8 +2,10 @@
     'libraries' => $libraries,
     'library' => $library,
 ])
+
 <div id="libraries" class="w-full flex flex-row flex-wrap justify-around mb-2">
-    <a href="{{ route('library') }}"  class="space-x-4">
+    <a href="{{ route('library.index') }}"  class="space-x-4">
+
         <button
             class="px-2 @if(is_null($library)) bg-yellow-200 text-black @else bg-gray-400 text-white @endif border border-black rounded-lg"
             title="All compositions entered by all users of TheDirectorsRoom.com"

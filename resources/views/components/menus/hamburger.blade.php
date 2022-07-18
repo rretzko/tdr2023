@@ -40,7 +40,7 @@
             <a href="{{ route('dashboard') }}" class="text-blue-600 bold">Dashboard</a>
             <a href="#" class="text-blue-600 bold">Students</a>
             <a href="#" class="text-blue-600 bold">Ensembles</a>
-            <a href="{{ route('library') }}" class="text-blue-600 bold">Libraries</a>
+            <a href="{{ route('library.index') }}" class="text-blue-600 bold">Libraries</a>
             <a href="#" class="text-blue-600 bold">Membership</a>
             <a href="#" class="text-blue-600 bold">Events</a>
             <a href="#" class="text-blue-600 bold">Profile</a>
